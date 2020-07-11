@@ -1,14 +1,61 @@
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
+// const Manager = require("./lib/Manager");
+// const Engineer = require("./lib/Engineer");
+// const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
-const path = require("path");
-const fs = require("fs");
+// const path = require("path");
+// const fs = require("fs");
 
-const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "team.html");
+// const OUTPUT_DIR = path.resolve(__dirname, "output");
+// const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
+
+let empID = 0
+
+addEmp();
+
+ function addEmp() {
+     return inquirer.prompt([
+         {
+            type: "confirm",
+            question: "Would you like to add an employee?"
+         }
+     ])
+     empInfo();
+ }
+ function empInfo() {
+     return inquirer.prompt([
+         {
+             type: "input",
+             question: "What is the employee's name?",
+             name: "name"
+         },
+         {
+            type: "input",
+            question: "What is the employee's email address?",
+            name: "email"
+        }
+     ])
+ }
+//  function empType() {
+//      return inquirer.prompt([
+//          {
+//              type: "list",
+//              question: "Please select the type of employee you'd like to add",
+//              name: "emptype",
+//              choices: [
+//                 "Manager",
+//                 "Engineer",
+//                 "intern"
+//              ]
+//          }
+//      ])
+//  }
+
+
+
+//  fucntion mngInfo()
+
 
 
 // Write code to use inquirer to gather information about the development team members,
