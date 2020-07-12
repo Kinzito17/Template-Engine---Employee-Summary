@@ -1,25 +1,29 @@
 // // TODO: Wri
-// const Employee = require("./Employee.js")
+const Employee = require("./Employee.js")
 
 
-// class Manager {
-//     // Just like constructor functions, classes can accept arguments
-//     constructor(name, email, id, officeNumber) {
-//       this.officeNumber = officeNumber;
-//     }
+class Manager extends Employee {
+    // Just like constructor functions, classes can accept arguments
+    constructor(name, email, id, officeNumber) {
+        super(name, email, id);
+        this.officeNumber = officeNumber;
+    }
 
-//     getRole()
+    getRole() {
+        return "Manager"
+    }
+    
+    getOfficeNumber() {
+        return this.officeNumber
+    }
+
+    printInfo() {
+      console.log(`Area: ${this.area}`);
+      console.log(`Perimeter: ${this.perimeter}`);
+    }
+  }
   
-//     printInfo() {
-//       console.log(`Area: ${this.area}`);
-//       console.log(`Perimeter: ${this.perimeter}`);
-//     }
-//   }
-  
-//   const shape = new Shape(25, 25);
-  
-//   shape.printInfo();
-
+  module.exports = Manager;
 
 
 
