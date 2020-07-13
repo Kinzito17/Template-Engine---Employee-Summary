@@ -12,24 +12,30 @@ const render = require("./lib/htmlRenderer");
 const teamMembers = [];
 const empIDs = [];
 
-addEmp();
-buildTeam()
-//create output dir if output path doesnt fs.exists, 
-//fs write file sync ( pass in output path, render, utf-8 )
-//call render (passin team member array)
-//call addManager
-
-addManager()
-
-//id is just numbers and has not been assigned,
-//.match how can I check to make sure it is only numbers
-//.match regex for valid email
 
 
-function holycow() {
+// inquirer.prompt(questions)
+//     .then((data) => {
+//         console.log(data);
+//         writeFile('README.md', generateMarkdown({...data}));
+//     })
 
+function addEmp() {
+    inquirer.prompt([
+        {
+            type: "confirm",
+            message: "Would you like to add an employee?",
+            name: "confirm"
+        }
+    ]).then(data => {
+        if (data.confirm) {
+            createTeam();
+        } else {
+            console.log("Come back soon!")
+        }
+    });
 
-    addManager: () => {
+    addManager = () => {
         inquirer.prompt([
             {
                 type: "input",
@@ -47,7 +53,7 @@ function holycow() {
                 message: "What is the employee's id?",
                 name: "id",
                 validate: answer => {
-                    const valid = answer.match();
+                    const valid = answer.match(/^[1-9]+$/);
                     if (valid) {
                         if (empIDs.includes(answer)) {
                             return "ID number already in use.";
@@ -63,11 +69,11 @@ function holycow() {
                 message: "What is the employee's email address?",
                 name: "email",
                 validate: answer => {
-                    const valid = answer.match(/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/g);
+                    const valid = answer.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g);
                     if (valid) {
                         return true;
                     }
-                    return "Please enter a positive valid email address";
+                    return "Please enter a valid email address";
                 }
             },
             {
@@ -89,7 +95,7 @@ function holycow() {
         });
     }
 
-    addIntern: () => {
+    addIntern = () => {
         inquirer.prompt([
             {
                 type: "input",
@@ -107,7 +113,7 @@ function holycow() {
                 message: "What is the employee's id?",
                 name: "id",
                 validate: answer => {
-                    const valid = answer.match();
+                    const valid = answer.match(/^[1-9]+$/);
                     if (valid) {
                         if (empIDs.includes(answer)) {
                             return "ID number already in use.";
@@ -123,11 +129,11 @@ function holycow() {
                 message: "What is the employee's email address?",
                 name: "email",
                 validate: answer => {
-                    const valid = answer.match(/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/g);
+                    const valid = answer.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g);
                     if (valid) {
                         return true;
                     }
-                    return "Please enter a positive valid email address";
+                    return "Please enter a valid email address";
                 }
             },
             {
@@ -150,7 +156,7 @@ function holycow() {
 
     }
 
-    addEngineer: () => {
+    addEngineer = () => {
         inquirer.prompt([
             {
                 type: "input",
@@ -168,7 +174,7 @@ function holycow() {
                 message: "What is the employee's id?",
                 name: "id",
                 validate: answer => {
-                    const valid = answer.match();
+                    const valid = answer.match(/^[1-9]+$/);
                     if (valid) {
                         if (empIDs.includes(answer)) {
                             return "ID number already in use.";
@@ -184,11 +190,11 @@ function holycow() {
                 message: "What is the employee's email address?",
                 name: "email",
                 validate: answer => {
-                    const valid = answer.match(/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/g);
+                    const valid = answer.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g);
                     if (valid) {
                         return true;
                     }
-                    return "Please enter a positive valid email address";
+                    return "Please enter a valid email address";
                 }
             },
             {
@@ -210,18 +216,19 @@ function holycow() {
         });
     }
 
-    createTeam: () => {
+    createTeam = () => {
         inquirer.prompt([
             {
                 type: "list",
-                message: "Please select the type of employee you'd like to add",
+                message: "If you'd like to add another employee please select the type of employee you'd like to add.",
                 name: "emptype",
                 choices: [
+                    "Manager",
                     "Engineer",
                     "Intern",
-                    "No more, thank you."
+                    "No more today, thank you."
                 ]
-            }
+            } 
         ]).then(answer => {
             switch (answer.emptype) {
                 case "Intern":
@@ -230,15 +237,28 @@ function holycow() {
                 case "Engineer":
                     addEngineer();
                     break;
+                case "Manager":
+                    addManager();
+                    break;
                 default:
                     buildTeam();
             }
         });
     }
 
+    //create output dir if output path doesnt fs.exists, 
+    //fs writefilesync ( pass in output path, render, utf-8 )
+    //call render (pass in teamMembers array)
+    buildTeam = () => {
+        let renderTeam = render(teamMembers);
+        console.log(renderTeam);
+
+        fs.writeFileSync("builtTeam.html", renderTeam, "utf-8")
+    }
+
 }
 
-holycow();
+addEmp();
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
@@ -252,10 +272,6 @@ holycow();
 // `output` folder. You can use the variable `outputPath` above target this location.
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
 
 // HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
 // and Intern classes should all extend from a class named Employee; see the directions

@@ -18,7 +18,7 @@ class Manager extends Employee {
     }
 
     printInfo() {
-      console.log(`Area: ${this.area}`);
+      console.log(`Office Number: ${this.officeNumber}`);
       console.log(`Perimeter: ${this.perimeter}`);
     }
   }

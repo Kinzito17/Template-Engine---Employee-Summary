@@ -14,7 +14,7 @@ class Intern extends Employee {
 
     getRole() {
         return "Intern"
-    } // Overridden to return 'Intern'
+    }
   
     printInfo() {
       console.log(`school: ${this.school}`);

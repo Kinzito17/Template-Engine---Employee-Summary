@@ -23,44 +23,13 @@ class Employee {
         return "Employee"
     };
 
+    printInfo() {
+        console.log(`Area: ${this.area}`);
+        console.log(`Perimeter: ${this.perimeter}`);
+    };
+
+
 };
 
 module.exports = Employee;
 
-
-
-
-
-
-
-
-// class Employee {
-//     constructor(name, email, id) {
-//         this.name = name;
-//         this.email = email;
-//         this.id = id;
-//     };
-
-//         getName() {
-//             return this.name;
-//         };
-
-//         getEmail() {
-//             return this.email;
-//         };
-
-//         getId() {
-//             return this.id;
-//         };
-
-//         getRole() {
-//             return "Employee"
-//         };
-
-    // printInfo() {
-    //     console.log(`Area: ${this.area}`);
-    //     console.log(`Perimeter: ${this.perimeter}`);
-    // };
-// };
-
-// module.exports = Employee;
