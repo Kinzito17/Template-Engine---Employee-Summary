@@ -14,4 +14,4 @@ Please find the team.html file written from the program here ->./develop/output.
 
 [Click HERE for a video Demo](https://drive.google.com/file/d/1LXM452uTfYzKfCBLrptdTZjkw_w0kLrk/view?usp=sharing)
 
-![readme-demo](readme.png)
+![template-demo](.develop/assets/dreamTeam.png)
