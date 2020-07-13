@@ -16,11 +16,6 @@ class Engineer extends Employee {
         return "Engineer"
     }
 
-  
-    printInfo() {
-      console.log(`github: ${this.github}`);
-      console.log(`Perimeter: ${this.perimeter}`);
-    }
   }
   
   module.exports = Engineer;

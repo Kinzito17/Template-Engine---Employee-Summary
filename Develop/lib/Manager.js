@@ -17,10 +17,6 @@ class Manager extends Employee {
         return this.officeNumber
     }
 
-    printInfo() {
-      console.log(`Office Number: ${this.officeNumber}`);
-      console.log(`Perimeter: ${this.perimeter}`);
-    }
   }
   
   module.exports = Manager;

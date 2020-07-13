@@ -15,11 +15,7 @@ class Intern extends Employee {
     getRole() {
         return "Intern"
     }
-  
-    printInfo() {
-      console.log(`school: ${this.school}`);
-      console.log(`Perimeter: ${this.perimeter}`);
-    }
-  }
+
+}
 
   module.exports = Intern;

@@ -23,12 +23,6 @@ class Employee {
         return "Employee"
     };
 
-    printInfo() {
-        console.log(`Area: ${this.area}`);
-        console.log(`Perimeter: ${this.perimeter}`);
-    };
-
-
 };
 
 module.exports = Employee;
