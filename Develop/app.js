@@ -13,29 +13,22 @@ const teamMembers = [];
 const empIDs = [];
 
 
-
-// inquirer.prompt(questions)
-//     .then((data) => {
-//         console.log(data);
-//         writeFile('README.md', generateMarkdown({...data}));
-//     })
-
-function addEmp() {
+const addEmp = () => {
     inquirer.prompt([
         {
             type: "confirm",
             message: "Would you like to add an employee?",
             name: "confirm"
         }
-    ]).then(data => {
-        if (data.confirm) {
+    ]).then(answer => {
+        if (answer.confirm) {
             createTeam();
         } else {
             console.log("Come back soon!")
         }
     });
 
-    addManager = () => {
+    const addManager = () => {
         inquirer.prompt([
             {
                 type: "input",
@@ -91,11 +84,11 @@ function addEmp() {
             const manager = new Manager(answer.name, answer.id, answer.email, answer.office);
             teamMembers.push(manager);
             empIDs.push(answer.id);
-            createTeam();
-        });
+            moreEmp();
+        })
     }
 
-    addIntern = () => {
+    const addIntern = () => {
         inquirer.prompt([
             {
                 type: "input",
@@ -151,12 +144,12 @@ function addEmp() {
             const intern = new Intern(answer.name, answer.id, answer.email, answer.school);
             teamMembers.push(intern);
             empIDs.push(answer.id);
-            createTeam();
+            moreEmp();
         });
 
     }
 
-    addEngineer = () => {
+    const addEngineer = () => {
         inquirer.prompt([
             {
                 type: "input",
@@ -212,15 +205,15 @@ function addEmp() {
             const engineer = new Engineer(answer.name, answer.id, answer.email, answer.github);
             teamMembers.push(engineer);
             empIDs.push(answer.id);
-            createTeam();
+            moreEmp();
         });
     }
 
-    createTeam = () => {
+    const createTeam = () => {
         inquirer.prompt([
             {
                 type: "list",
-                message: "If you'd like to add another employee please select the type of employee you'd like to add.",
+                message: "Please select the type of employee you'd like to add.",
                 name: "emptype",
                 choices: [
                     "Manager",
@@ -228,7 +221,7 @@ function addEmp() {
                     "Intern",
                     "No more today, thank you."
                 ]
-            } 
+            }
         ]).then(answer => {
             switch (answer.emptype) {
                 case "Intern":
@@ -246,26 +239,34 @@ function addEmp() {
         });
     }
 
-    //create output dir if output path doesnt fs.exists, 
-    //fs writefilesync ( pass in output path, render, utf-8 )
-    //call render (pass in teamMembers array)
-    buildTeam = () => {
-        let renderTeam = render(teamMembers);
-        console.log(renderTeam);
+    const moreEmp = () => {
+        inquirer.prompt([
+            {
+                type: "confirm",
+                message: "Would you like to add another employee?",
+                name: "confirm",
+            }
+        ]).then (answer => {
+            if(answer.confirm) {
+                createTeam();
+            } else {
+                console.log("Thank you.")
+                buildTeam();
+            }
+        })
+    }
 
-        fs.writeFileSync("builtTeam.html", renderTeam, "utf-8")
+    const buildTeam = () => {
+
+        let renderTeam = render(teamMembers);
+
+        fs.writeFileSync(outputPath, renderTeam, "utf-8")
     }
 
 }
 
 addEmp();
 
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
 
 // After you have your html, you're now ready to create an HTML file using the HTML
 // returned from the `render` function. Now write it to a file named `team.html` in the
@@ -273,8 +274,3 @@ addEmp();
 // Hint: you may need to check if the `output` folder exists and create it if it
 // does not.
 
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
